@@ -1,9 +1,11 @@
 (ns eliza.core
   (:gen-class)
-  (:import [org.hypergraphdb HyperGraph]))
+  (:import [org.hypergraphdb HyperGraph])
+  (:import [marytts LocalMaryInterface]))
 
 (def location "./db")
 (def graph (new HyperGraph location))
+(def mary (new LocalMaryInterface))
 
 ; Returns input
 (defn input-repl []
