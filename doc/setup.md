@@ -5,8 +5,6 @@ Dependencies
  - Software
 	 - PocketSphinx
 	 - MaryTTS
-	 - Scala
-		 - SBT
 	 - HyperGraphDB
  - Hardware
 	 - Raspberry Pi
