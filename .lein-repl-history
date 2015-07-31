@@ -1,0 +1,13 @@
+(let [lmi (new LocalMaryInteface)]
+(doseq [i (.getAvailableVoices lmi)]
+exit
+(let [lmi (new LocalMaryInterface)]
+(doseq [i (.getAvailableVoices lmi)]
+(println i)))
+(:import [marytts LocalMaryInterface MaryInterface])
+(nz eliza.core (:import [marytts LocalMaryInterface MaryInterface]))
+(ns eliza.core (:import [marytts LocalMaryInterface MaryInterface]))
+(let [lmi (new LocalMaryInteface)]
+(doseq [i (.getAvailableVoices lmi)]
+(println i)))
+exit
