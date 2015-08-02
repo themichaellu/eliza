@@ -11,3 +11,64 @@ exit
 (doseq [i (.getAvailableVoices lmi)]
 (println i)))
 exit
+(:import [marytts LocalMaryInterface]) 
+(ns eliza.core
+(:import [marytts LocalMaryInterface]))
+(ns eliza.core
+(:import [marytts LocalMaryInterface]))
+(ns eliza.core
+(:import [org.hypergraphdb HyperGraph])
+(:import [org.hypergraphdb.HGQuery hg]))
+(:import [org.hypergraphdb HGQuery])
+(:import [org.hypergraphdb HyperGraph])
+(ns eliza.core
+(:import [org.hypergraphdb HyperGraph]))
+(ns eliza.core
+(:import [org.hypergraphdb HGQuery]))
+HGQuery
+(def hg (.hg HGQuery))
+(def test (.hg HGQuery))
+(def whatisthis (.hg HGQuery))
+exit
+HGQuery$hg
+(.type HGQuery$hg String)
+(.type HGQuery$hg java.lang.String)
+(.type HGQuery$hg)
+(.type HGQuery$hg "hello")
+exit
+HGQuery*
+HGQuery$hg
+(.all HGQuery$hg)
+(.all HGQuery$hg [])
+HGQuery$hg
+HGQuery.hg
+HGQuery$hg3
+(arity HGQuery$hg 0)
+exit
+HGQuery$hg
+HGQuery$hg\type
+(HGQuery$hg\type String)
+(HGQuery$hg/type String)
+exit
+(def x [1 2 3 4])
+x
+type x
+(deseq i x (println i))
+(doseq i x (println i))
+(def x (vector 1 2 3 4))
+x
+type x
+(doseq i x (println i))
+exit
+(temp-add)
+(temp-remove)
+(def [vect (add-items ["x" "y" "z"])])
+(def vect (add-items ["x" "y" "z"]))
+(println vect)
+(.getHandle graph (get vect 0))
+(get vect 0)
+vect
+(nth vect 0)
+exit
+(.get graph "Hello")
+exit

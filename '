@@ -1,0 +1,76 @@
+(ns eliza.core
+  (:gen-class)
+  (:import [org.hypergraphdb HyperGraph])
+  (:import [org.hypergraphdb HGQuery$hg])
+  (:import [marytts LocalMaryInterface])
+  (:import [marytts.util.data.audio AudioPlayer]))
+
+(def location "./db")
+(def graph (new HyperGraph location))
+(def mary-interface (new LocalMaryInterface))
+
+(defn mary-set-voice [lmi]
+  (.setVoice lmi (first (.getAvailableVoices lmi))))
+
+(defn play-audio [wav-snippet]
+  (let [player (new AudioPlayer wav-snippet)]
+    (do
+      (.start player)
+      (.join player))))
+
+(defn input-repl []
+  (do
+    (print "you: ")
+    (flush)
+    (read-line)))
+    ;(let [in (read-line)]
+    ;  (.get graph (.add graph "goodbye!")))))
+
+(defn output-repl [mary out]
+  (do
+  (print(str "eliza: " ))
+  (doseq [item out]
+    (print item)
+    (play-audio (.generateAudio mary item)))
+  (print "\n")))
+
+
+(defn hello-world []
+  (HGQuery$hg/getAll graph (HGQuery$hg/type String)))
+
+(defn repl [mary]
+  (loop []
+    (let [input (input-repl)]
+    (when (not= input "exit")
+        (output-repl mary (hello-world))
+        (recur)))))
+
+(defn temp-add []
+  "Adds few strings to hypergraphdb"
+    (let [item ["Hello" ", " "World" "!"]]
+        (add-links item )))
+
+(defn add-links [vect item1 item2]
+  (do
+  (.add graph (new HGPlainLink item1 item2))
+  (let [index (.indexOf vect item2)]
+  (if (>= index length)
+    (add-link item2 (get (+ index 1))))))
+
+(defn temp-remove []
+  "Removes a temp strings from hypergraphdb"
+  (let [remove-list (HGQuery$hg/findAll graph (HGQuery$hg/type String))]
+    (doseq [item remove-list]
+      (do
+        (println (.get graph item))
+        (.remove graph item)))))
+  
+
+(defn -main [& args] 
+      (let [mary mary-interface]
+        (do 
+          (mary-set-voice mary)
+          (temp-add)
+          (repl mary)
+          (temp-remove)
+          (.close graph))))
