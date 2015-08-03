@@ -14,7 +14,7 @@
   :repositories [["hgdb" "http://hypergraphdb.org/maven"]
                  ["jcenter" "http://jcenter.bintray.com"]]
 
-  :main ^:skip-aot eliza.core
+  :main ^:skip-aot eliza.core_interpreter
 
   :target-path "target/%s"
 

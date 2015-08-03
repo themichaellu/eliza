@@ -4,4 +4,4 @@ db/
 
 log/
 
-./.lein*
+.lein*

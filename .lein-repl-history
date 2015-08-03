@@ -72,3 +72,13 @@ vect
 exit
 (.get graph "Hello")
 exit
+(def nine 9)
+nine
+#'nine
+nine
+exit
+ls
+exit
+eval
+run
+exit
