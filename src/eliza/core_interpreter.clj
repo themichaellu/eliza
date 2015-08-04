@@ -1,10 +1,10 @@
 (ns eliza.core_interpreter
   (:gen-class)
-  (:require [eliza.hypergraphdb :as hypergraph])
+  (:require [eliza.hypergraphdb :as graph])
   (:require [eliza.marytts :as marytts :refer [mary-interface audio-player]]))
 
 (defn core-initialize []
-  (hypergraph/initialize)
+  (graph/initialize)
   (marytts/initialize))
 
 (defn input-repl []
@@ -13,21 +13,23 @@
     (read-line))
 
 (defn output-repl [input]
-  ((print "eliza: " )
-   (hypergraph/hg-bft input String)
-  ;(let [output (hypergraph/hg-bft "Hello" String)]
-  ;  (marytts/play-audio (clojure.string/join output))
-    (print "\n")))
+  (print "eliza: " )
+  (let [handles (graph/hg-bft "Hello" String)
+        phrase (clojure.string/join (map #(graph/hg-temp-get %) handles))]
+    (print phrase)
+    (marytts/play-audio phrase))
+  (print "\n"))
 
-(defn repl [handle]
-    (let [input (input-repl)]
-    (while (not= input "exit")
-        (output-repl handle))))
+(defn repl []
+    (loop [input (input-repl)] 
+      (when (not= input "exit")
+        (output-repl input)
+        (recur (input-repl)))))
 
 (defn -main [& args] 
-     ((core-initialize)
-      ;(hypergraph/hg-temp-add)
-      (let [vect (hypergraph/hg-add-items ["Hello"])] 
-        (repl (first vect)))
-      (hypergraph/hg-temp-remove)
-      (hypergraph/hg-close)))
+     (core-initialize)
+     (println (graph/hg-temp-add ["Hello" "," " World" "!"]))
+     (repl)
+     (graph/hg-temp-remove)
+     (graph/hg-close))
+

@@ -12,7 +12,8 @@
                  [de.dfki.mary/voice-cmu-slt-hsmm "5.1.2"]]
 
   :repositories [["hgdb" "http://hypergraphdb.org/maven"]
-                 ["jcenter" "http://jcenter.bintray.com"]]
+                 ["jcenter" "http://jcenter.bintray.com"]
+                 ["ojo" "http://oss.jfrog.org/artifactory/libs-release"]]
 
   :main ^:skip-aot eliza.core_interpreter
 

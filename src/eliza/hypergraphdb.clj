@@ -13,6 +13,9 @@
 (defn hg-close []
   (.close @graph))
 
+(defn hg-temp-get [handle]
+  (.get @graph handle))
+
 ; Input:    type 
 ; Output    <ItemType> vector
 ; Purpose:  get all nodes of a specific type 
@@ -53,10 +56,8 @@
 
 ; Purpose:  add an array of strings to the hypergraph
 ; TODO:     remove this in the future
-(defn hg-temp-add []
-    (let [items ["Hello" "," " World" "!"]
-          vect (hg-add-items items)]
-      (hg-add-links vect)))
+(defn hg-temp-add [items]
+      (hg-add-links (hg-add-items items)))
 
 ; Purpose:  remove all string nodes from hypergraph
 ; TODO:     remove this in the future
@@ -66,11 +67,11 @@
 ; Input:    HGHandle of start node, type of nodes in traversal
 ; Output:   <HGHandle> vector
 ; Purpose:  Breadth-First-Traversal given a head node
-(defn hg-bft [node-handle get-type]
-  (let [alGen (new DefaultALGenerator @graph (HGQuery$hg/type HGPlainLink) (HGQuery$hg/type get-type) false true false)
-        trav (new HGBreadthFirstTraversal node-handle alGen)]
+(defn hg-bft [node get-type]
+  (let [response (transient [(.getHandle @graph node)]) 
+        alGen (new DefaultALGenerator @graph (HGQuery$hg/type HGPlainLink) (HGQuery$hg/type get-type) false true false)
+        trav (new HGBreadthFirstTraversal (.getHandle @graph node) alGen)]
     (while (= true (.hasNext trav))
-      (print (.getSecond (.next trav))))))
+      (conj! response (.getSecond (.next trav))))
+      (persistent! response)))
 
-(defn hg-temp-get [in]
-  (println (.getHandle @graph in)))

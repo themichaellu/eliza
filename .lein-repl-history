@@ -267,7 +267,16 @@ exit
 (hg-temp-add)
 (hg-temp-get "Hello")
 exit
-(ns eliza.hypergraphdb)
-(initialize)
-(hg-temp-add)
+ls
+exit
+(graph/hg-temp-remove)
+(graph/hg-temp-add ["Hello" "," " World" "!"])
+(ns eliza.core_interpreter)
+exit
+(def x [1 2 3])
+(conj x 4)
+exit
+(def x ["a" "b" "c"])
+(reduce #(str %) x)
+(reduce #(str 1%) x)
 exit
