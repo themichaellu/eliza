@@ -1,4 +1,4 @@
-(defproject clj_test "0.0.1-SNAPSHOT"
+(defproject eliza "0.0.1-SNAPSHOT"
   :description "FIXME: write description"
 
   :url "http://example.com/FIXME"
@@ -14,6 +14,8 @@
   :repositories [["hgdb" "http://hypergraphdb.org/maven"]
                  ["jcenter" "http://jcenter.bintray.com"]
                  ["ojo" "http://oss.jfrog.org/artifactory/libs-release"]]
+
+  :plugins [[lein-gorilla "0.3.4"]]
 
   :main ^:skip-aot eliza.core_interpreter
 

@@ -7,6 +7,7 @@
 (def location "./db")
 (def graph (atom nil))
 
+
 (defn initialize []
   (reset! graph (HGEnvironment/get location)))
 
@@ -74,4 +75,3 @@
     (while (= true (.hasNext trav))
       (conj! response (.getSecond (.next trav))))
       (persistent! response)))
-

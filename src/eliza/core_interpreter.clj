@@ -12,7 +12,7 @@
     (flush)
     (read-line))
 
-(defn output-repl [input]
+(defn output-repl []
   (print "eliza: " )
   (let [handles (graph/hg-bft "Hello" String)
         phrase (clojure.string/join (map #(graph/hg-temp-get %) handles))]
@@ -23,7 +23,7 @@
 (defn repl []
     (loop [input (input-repl)] 
       (when (not= input "exit")
-        (output-repl input)
+        (output-repl)
         (recur (input-repl)))))
 
 (defn -main [& args] 
