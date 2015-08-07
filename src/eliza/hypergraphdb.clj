@@ -14,11 +14,11 @@
 (defn hg-close []
   (.close @graph))
 
-(defn hg-temp-get [handle]
+(defn hg-get-node [handle]
   (.get @graph handle))
 
 ; Input:    type 
-; Output    <ItemType> vector
+; Output    <AtomType> vector
 ; Purpose:  get all nodes of a specific type 
 (defn hg-get-all [get-type]
   (HGQuery$hg/getAll @graph (HGQuery$hg/type get-type)))
@@ -29,41 +29,42 @@
 (defn hg-find-all [get-type]
   (HGQuery$hg/findAll @graph (HGQuery$hg/type get-type)))
 
-; Input:    collection of items
-; Output:   <HGHandle> vector for corresponding items
-; Purpose:  add vector of items into graph
-(defn hg-add-items [coll]
-  (map #(.add @graph %) coll))
+; Input:    collection of nodes
+; Output:   <HGHandle> vector for corresponding nodes
+; Purpose:  add vector of nodes into graph
+(defn hg-add-nodes [coll]
+  (map #(.getPersistentHandle @graph (.add @graph %)) coll))
 
-; Input:    two <HGHandle> items
+; Input:    two <HGHandle> nodes
 ; Output:   <HGHandle> link
-; Purpose:  establish a HGPlainLink between two items
-(defn hg-add-link [item1 item2]
-  (.add @graph (new HGPlainLink (into-array HGHandle [item1 item2]))))
+; Purpose:  establish a HGPlainLink between two nodes
+(defn hg-add-link [node1 node2]
+  (.add @graph (new HGPlainLink (into-array HGHandle [node1 node2]))))
 
-; Input:    vector of item HGHandles
+; Input:    vector of node HGHandles
 ; Output:   vector of link HGHandles
 ; Purpose:  establish a HGPlainLink between every
-;           item in the vector
+;           node in the vector
 (defn hg-add-links [coll]
   (let [parted-coll (partition 2 1 coll)]
-    (map #(hg-add-link (first %) (second %)) parted-coll)))
+    (map #(.getPersistentHandle @graph (hg-add-link (first %) (second %))) parted-coll)))
 
-; Input:    vector of item HGHandles
-; Purpose:  remove all referenced items
-(defn hg-remove-items [coll]
-  (doseq [item coll]
-    (.remove @graph item)))
+; Input:    vector of node HGHandles
+; Purpose:  remove all referenced nodes
+; TODO:     removal of nodes should not remove their hyperarcs
+(defn hg-remove-nodes [coll]
+  (doseq [node coll]
+    (.remove @graph node)))
 
 ; Purpose:  add an array of strings to the hypergraph
 ; TODO:     remove this in the future
-(defn hg-temp-add [items]
-      (hg-add-links (hg-add-items items)))
+(defn hg-add-nodes-links [nodes]
+      (hg-add-links (hg-add-nodes nodes)))
 
 ; Purpose:  remove all string nodes from hypergraph
 ; TODO:     remove this in the future
-(defn hg-temp-remove []
-  (hg-remove-items (hg-find-all String)))
+(defn hg-remove-type [type]
+  (hg-remove-nodes (hg-find-all type)))
 
 ; Input:    HGHandle of start node, type of nodes in traversal
 ; Output:   <HGHandle> vector

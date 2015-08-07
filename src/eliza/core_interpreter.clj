@@ -15,7 +15,7 @@
 (defn output-repl []
   (print "eliza: " )
   (let [handles (graph/hg-bft "Hello" String)
-        phrase (clojure.string/join (map #(graph/hg-temp-get %) handles))]
+        phrase (clojure.string/join (map #(graph/hg-get-node %) handles))]
     (print phrase)
     (marytts/play-audio phrase))
   (print "\n"))
@@ -28,8 +28,8 @@
 
 (defn -main [& args] 
      (core-initialize)
-     (println (graph/hg-temp-add ["Hello" "," " World" "!"]))
+     (println (graph/hg-add-nodes-links ["Hello" "," " World" "!"]))
      (repl)
-     (graph/hg-temp-remove)
+     (graph/hg-remove-type String)
      (graph/hg-close))
 
