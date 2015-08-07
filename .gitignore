@@ -8,3 +8,7 @@ log/
 
 .idea/
 
+.gorilla-port
+*.lein-repl-history
+.nrepl-port
+*.iml
