@@ -1,3 +1,6 @@
-(ns eliza.schema
-  (:gen-class)
-  (:require [eliza.hypergraphdb :as graph]))
+(ns eliza.schema)
+
+(defprotocol schema-protocol
+  (get-concepts-except [this handle]))
+
+(defrecord schema [function])

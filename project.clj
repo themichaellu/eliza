@@ -15,6 +15,8 @@
                  ["jcenter" "http://jcenter.bintray.com"]
                  ["ojo" "http://oss.jfrog.org/artifactory/libs-release"]]
 
+  ;:java-source-paths ["eliza/src"]
+
   :plugins [[lein-gorilla "0.3.4"]]
 
   :main ^:skip-aot eliza.core_interpreter

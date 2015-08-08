@@ -35,6 +35,9 @@
 (defn hg-add-nodes [coll]
   (map #(.getPersistentHandle @graph (.add @graph %)) coll))
 
+(defn hg-replace-node [handle atom]
+  (.replace @graph handle atom))
+
 ; Input:    two <HGHandle> nodes
 ; Output:   <HGHandle> link
 ; Purpose:  establish a HGPlainLink between two nodes
@@ -60,6 +63,7 @@
 ; TODO:     remove this in the future
 (defn hg-add-nodes-links [nodes]
       (hg-add-links (hg-add-nodes nodes)))
+
 
 ; Purpose:  remove all string nodes from hypergraph
 ; TODO:     remove this in the future
