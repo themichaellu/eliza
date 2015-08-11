@@ -4,14 +4,19 @@
             [eliza.hypergraphdb :as graph])
   (:use clojure.pprint))
 
+(defn test-fixture [f]
+  (initialize)
+  (f)
+  (graph/hg-close))
+
+(use-fixtures :each test-fixture)
+
 (deftest memory-exist-concept-test
   (testing "memory-exist-concept-function test"
-    (initialize)
     (is (= false (exist-concept "word")))))
 
 (deftest memory-add-remove-concept-test
   (testing "memory-add-remove-concept-function test"
-    (initialize)
     (let [handle (add-concept "word" "function")
           concept (graph/hg-get-node handle)]
       (is (= "word" (:word concept)))
@@ -20,7 +25,6 @@
 
 (deftest memory-change-concept-test
   (testing "memory-change-concept test"
-    (initialize)
     (let [handle (add-concept "word" "function")
           concept (graph/hg-get-node handle)]
       (is (= "word" (:word concept)))
@@ -43,7 +47,6 @@
 
 (deftest exist-schema-test
   (testing "exist-schema test")
-  (initialize)
   (let [handle1 (add-concept "word1" "function1")
         handle2 (add-concept "word2" "function2")
         handle-link (add-schema [handle1 handle2] {:value "value"})
@@ -56,7 +59,6 @@
 
 (deftest add-remove-schema-test
   (testing "add-remove-schema test")
-  (initialize)
   (let [handle1 (add-concept "word1" "function1")
         handle2 (add-concept "word2" "function2")
         handle-link (add-schema [handle1 handle2] {:value "value"})]
@@ -70,7 +72,6 @@
 
 (deftest change-schema-value-test
   (testing "change-schema-value test")
-  (initialize)
   (let [handle1 (add-concept "word1" "function1")
         handle2 (add-concept "word2" "function2")
         handle-link (add-schema [handle1 handle2] {:value "value"})]
@@ -82,7 +83,6 @@
 
 (deftest change-schema-targets-test
   (testing "change-schema-targets test")
-  (initialize)
   (let [handle1 (add-concept "word1" "function1")
         handle2 (add-concept "word2" "function2")
         handle-link (add-schema [handle1 handle2] {:value "value"})]
