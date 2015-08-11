@@ -28,8 +28,8 @@
 
 (defn -main [& args] 
      (core-initialize)
-     (println (graph/hg-add-nodes-links ["Hello" "," " World" "!"]))
-     (repl)
+     ;(println (graph/hg-add-nodes-link ["Hello" "," " World" "!"]))
+     ;(repl)
      (graph/hg-remove-type String)
      (graph/hg-close))
 
