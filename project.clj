@@ -19,6 +19,8 @@
 
   :plugins [[lein-gorilla "0.3.4"]]
 
+  ;:aot [eliza.concept] ;eliza.memory]
+
   :main ^:skip-aot eliza.core_interpreter
 
   :target-path "target/%s"

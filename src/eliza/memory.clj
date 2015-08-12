@@ -1,14 +1,14 @@
 (ns eliza.memory
   (:gen-class)
   (:require [eliza.hypergraphdb :as graph]
-            [eliza.concept :as node]
+            [eliza.concept :refer :all]
             [eliza.concept_map :as cmap]
-            [eliza.schema_map :as smap]
-            [eliza.schema :as hyperarc])
+            [eliza.schema_map :as smap])
+           ; [eliza.schema :as refer :all])
   (:use clojure.pprint)
   (:use clojure.set))
 
-(defrecord concept_obj [word function])
+;(defrecord concept_obj [word function])
 
 (defn initialize []
   (cmap/initialize)
@@ -21,7 +21,8 @@
 
 (defn add-concept[word function]
   (if (= false (exist-concept word))
-      (let [word-concept {:word word :function function}
+      (let [word-concept  (->concept_obj word function)
+            ;word-concept {:word word :function function}
             handle (first (graph/hg-add-nodes [word-concept]))]
         (graph/hg-replace-node handle (assoc word-concept :handle handle))
         (cmap/add-concept word handle)

@@ -5,6 +5,7 @@
   (:import [org.hypergraphdb.algorithms DefaultALGenerator HGTraversal HGBreadthFirstTraversal])
   (:import [org.hypergraphdb.handle UUIDHandleFactory]))
 
+
 ;TODO: should not be hardcoded in
 (def location "./db")
 (def graph (atom nil))

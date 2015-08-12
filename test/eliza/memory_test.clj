@@ -93,8 +93,3 @@
     (is (= 2 (graph/hg-link-arity handle-link)))
     (remove-schema handle-link)
     (is (= nil (graph/hg-get-node handle-link)))))
-
-
-
-
-
