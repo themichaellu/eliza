@@ -1,5 +1,4 @@
-(ns eliza.concept
-  (gen-class))
+(ns eliza.concept)
 
 ;(defprotocol concept-protocol
 ;  (get-function [this])
