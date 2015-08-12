@@ -3,12 +3,10 @@
   (:require [eliza.hypergraphdb :as graph]
             [eliza.concept :refer :all]
             [eliza.concept_map :as cmap]
-            [eliza.schema_map :as smap])
-           ; [eliza.schema :as refer :all])
+            [eliza.schema_map :as smap]
+            [eliza.schema :refer :all])
   (:use clojure.pprint)
   (:use clojure.set))
-
-;(defrecord concept_obj [word function])
 
 (defn initialize []
   (cmap/initialize)
@@ -53,7 +51,8 @@
       false common-coll)))
 
 (defn add-schema[coll value]
-  (let [handle (graph/hg-add-link coll value)]
+  (let [obj (->schema_obj value)
+        handle (graph/hg-add-link coll obj)]
     (smap/add-schema handle coll)
     handle))
 
@@ -63,7 +62,8 @@
 
 (defn change-schema-value [handle value]
   ;(let [coll (smap/get-schema handle)]
-    (graph/hg-change-link-value handle value))
+  (let [obj (->schema_obj value)]
+    (graph/hg-change-link-value handle value)))
     ;(graph/hg-replace-link handle coll value)))
 
 (defn change-schema-targets [handle coll]

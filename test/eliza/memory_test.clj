@@ -49,22 +49,22 @@
   (testing "exist-schema test")
   (let [handle1 (add-concept "word1" "function1")
         handle2 (add-concept "word2" "function2")
-        handle-link (add-schema [handle1 handle2] {:value "value"})
+        handle-link (add-schema [handle1 handle2] "function")
         ; This is just testing the hg-make-handle-string method
         handle-link2 (graph/hg-make-handle-string (str handle-link))]
     ; exist-schema returns a set, which is why we have to "first"
     (is (= (str handle-link) (first (exist-schema [handle1 handle2]))))
-    (is (= "value" (:value (graph/hg-get-link-value handle-link2))))
+    (is (= "function" (:function (graph/hg-get-link-value handle-link2))))
     (remove-schema handle-link)))
 
 (deftest add-remove-schema-test
   (testing "add-remove-schema test")
   (let [handle1 (add-concept "word1" "function1")
         handle2 (add-concept "word2" "function2")
-        handle-link (add-schema [handle1 handle2] {:value "value"})]
+        handle-link (add-schema [handle1 handle2] "function")]
     ;(println "")
     ;(println handle-link)
-    (is (= "value" (:value (graph/hg-get-link-value handle-link))))
+    (is (= "function" (:function (graph/hg-get-link-value handle-link))))
     (remove-schema handle-link)
     ; We change this to hg-get-node because, if we use hg-get-link-value,
     ; we get a NPE
@@ -74,10 +74,10 @@
   (testing "change-schema-value test")
   (let [handle1 (add-concept "word1" "function1")
         handle2 (add-concept "word2" "function2")
-        handle-link (add-schema [handle1 handle2] {:value "value"})]
-    (is (= "value" (:value (graph/hg-get-link-value handle-link))))
-    (change-schema-value handle-link {:value "value changed"})
-    (is (= "value changed" (:value (graph/hg-get-link-value handle-link))))
+        handle-link (add-schema [handle1 handle2] "function")]
+    (is (= "function" (:function (graph/hg-get-link-value handle-link))))
+    (change-schema-value handle-link {:function "function changed"})
+    (is (= "function changed" (:function (graph/hg-get-link-value handle-link))))
     (remove-schema handle-link)
     (is (= nil (graph/hg-get-node handle-link)))))
 
@@ -85,7 +85,7 @@
   (testing "change-schema-targets test")
   (let [handle1 (add-concept "word1" "function1")
         handle2 (add-concept "word2" "function2")
-        handle-link (add-schema [handle1 handle2] {:value "value"})]
+        handle-link (add-schema [handle1 handle2] "function")]
     (is (= 2 (graph/hg-link-arity handle-link)))
     (change-schema-targets handle-link [handle1])
     (is (= 1 (graph/hg-link-arity handle-link)))

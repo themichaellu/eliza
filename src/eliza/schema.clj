@@ -1,6 +1,6 @@
 (ns eliza.schema)
 
-(defprotocol schema-protocol
-  (get-concepts-except [this handle]))
+;(defprotocol schema-protocol
+;  (get-concepts-except [this handle]))
 
-(defrecord schema [function])
+(defrecord schema_obj [function])

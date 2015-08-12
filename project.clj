@@ -19,7 +19,7 @@
 
   :plugins [[lein-gorilla "0.3.4"]]
 
-  :aot [eliza.concept]
+  :aot [eliza.concept eliza.schema]
 
   ;:aot [eliza.concept] ;eliza.memory]
 
