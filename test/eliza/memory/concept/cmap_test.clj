@@ -1,6 +1,6 @@
-(ns eliza.concept_map_test
+(ns eliza.memory.concept.cmap_test
   (:require [clojure.test :refer :all]
-            [eliza.concept_map :refer :all]))
+            [eliza.memory.concept.cmap :refer :all]))
 
 (deftest add-test
   (testing "add test"

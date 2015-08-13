@@ -1,4 +1,4 @@
-(ns eliza.schema_map
+(ns eliza.memory.schema.smap
   (:gen-class)
   (:use clojure.pprint))
 

@@ -1,4 +1,4 @@
-(ns eliza.concept_object)
+(ns eliza.memory.concept.crecord)
 
 ;(defprotocol concept-protocol
 ;  (get-function [this])

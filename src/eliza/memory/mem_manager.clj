@@ -1,10 +1,10 @@
-(ns eliza.memory
+(ns eliza.memory.mem_manager
   (:gen-class)
-  (:require [eliza.hypergraphdb :as graph]
-            [eliza.concept_object :refer :all]
-            [eliza.concept_map :as cmap]
-            [eliza.schema_map :as smap]
-            [eliza.concept_object :refer :all])
+  (:require [eliza.utils.hypergraphdb :as graph]
+            [eliza.memory.concept.crecord :refer :all]
+            [eliza.memory.concept.cmap :as cmap]
+            [eliza.memory.schema.smap :as smap]
+            [eliza.memory.schema.srecord :refer :all])
   (:use clojure.pprint)
   (:use clojure.set))
 

@@ -1,6 +1,6 @@
-(ns eliza.hypergraphdb_test
+(ns eliza.utils.hypergraphdb_test
   (:require [clojure.test :refer :all]
-            [eliza.hypergraphdb :refer :all]))
+            [eliza.utils.hypergraphdb :refer :all]))
 
 (deftest hg-add-nodes-test
   (testing "hg-add-nodes test"

@@ -1,6 +1,6 @@
-(ns eliza.core_interpreter_test
+(ns eliza.main_test
   (:require [clojure.test :refer :all]
-            [eliza.core_interpreter :refer :all]))
+            [eliza.main :refer :all]))
 
 (deftest a-test
   (testing "This works"

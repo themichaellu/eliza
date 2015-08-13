@@ -1,6 +1,6 @@
-(ns eliza.schema_test
+(ns eliza.memory.schema.srecord_test
   (:require [clojure.test :refer :all]
-            [eliza.concept_object :refer :all])
+            [eliza.memory.schema.srecord :refer :all])
   (:use clojure.pprint))
 
 (deftest schema-function-test

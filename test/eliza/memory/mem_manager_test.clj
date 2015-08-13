@@ -1,7 +1,7 @@
-(ns eliza.memory_test
+(ns eliza.memory.mem_manager_test
   (:require [clojure.test :refer :all]
-            [eliza.memory :refer :all]
-            [eliza.hypergraphdb :as graph])
+            [eliza.memory.mem_manager :refer :all]
+            [eliza.utils.hypergraphdb :as graph])
   (:use clojure.pprint))
 
 (defn test-fixture [f]

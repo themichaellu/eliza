@@ -1,4 +1,4 @@
-(ns eliza.hypergraphdb
+(ns eliza.utils.hypergraphdb
   (:gen-class)
   (:import [org.hypergraphdb HGEnvironment HyperGraph HGHandle
                              HGQuery$hg HGPlainLink HGValueLink])
@@ -25,13 +25,13 @@
 (defn hg-get-link-value [handle]
   (.getValue (.get @graph handle)))
 
-; Input:    type 
+; Input:    type
 ; Output    <AtomType> vector
-; Purpose:  get all nodes of a specific type 
+; Purpose:  get all nodes of a specific type
 (defn hg-get-all [get-type]
   (HGQuery$hg/getAll @graph (HGQuery$hg/type get-type)))
 
-; Input:    type 
+; Input:    type
 ; Output    <HGHandle> vector
 ; Purpose:  get all the handles of nodes of a specific type
 (defn hg-find-all [get-type]
@@ -118,7 +118,7 @@
 ; Output:   <HGHandle> vector
 ; Purpose:  Breadth-First-Traversal given a head node
 (defn hg-bft [node get-type]
-  (let [response (transient [(.getHandle @graph node)]) 
+  (let [response (transient [(.getHandle @graph node)])
         alGen (new DefaultALGenerator @graph (HGQuery$hg/type HGPlainLink) (HGQuery$hg/type get-type) false true false)
         trav (new HGBreadthFirstTraversal (.getHandle @graph node) alGen)]
     (while (= true (.hasNext trav))

@@ -15,15 +15,12 @@
                  ["jcenter" "http://jcenter.bintray.com"]
                  ["ojo" "http://oss.jfrog.org/artifactory/libs-release"]]
 
-  ;:java-source-paths ["eliza/src"]
-
   :plugins [[lein-gorilla "0.3.4"]]
 
-  :aot [eliza.concept eliza.schema]
+  :aot [eliza.memory.concept.crecord
+        eliza.memory.schema.srecord]
 
-  ;:aot [eliza.concept] ;eliza.memory]
-
-  :main ^:skip-aot eliza.core_interpreter
+  :main ^:skip-aot eliza.core
 
   :target-path "target/%s"
 

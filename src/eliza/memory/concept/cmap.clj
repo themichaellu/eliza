@@ -1,4 +1,4 @@
-(ns eliza.concept_map
+(ns eliza.memory.concept.cmap
   (:gen-class)
   (:use clojure.pprint))
 

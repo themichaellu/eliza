@@ -1,6 +1,6 @@
-(ns eliza.schema_map_test
+(ns eliza.memory.schema.smap_test
   (:require [clojure.test :refer :all]
-            [eliza.schema_map :refer :all]))
+            [eliza.memory.schema.smap :refer :all]))
 
 (deftest add-test
   (testing "add test"
