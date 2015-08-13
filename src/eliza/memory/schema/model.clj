@@ -1,6 +1,6 @@
-(ns eliza.memory.schema.srecord)
+(ns eliza.memory.schema.model)
 
 ;(defprotocol schema-protocol
 ;  (get-concepts-except [this handle]))
 
-(defrecord schema_obj [function])
+(defrecord srec [function])

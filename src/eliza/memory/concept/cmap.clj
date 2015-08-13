@@ -18,13 +18,3 @@
 
 (defn pprint-cmap []
   (pprint concept-map))
-
-
-
-
-
-
-
-
-
-

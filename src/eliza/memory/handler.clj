@@ -1,10 +1,10 @@
-(ns eliza.memory.mem_manager
+(ns eliza.memory.handler
   (:gen-class)
   (:require [eliza.utils.hypergraphdb :as graph]
-            [eliza.memory.concept.crecord :refer :all]
+            [eliza.memory.concept.model :refer :all]
             [eliza.memory.concept.cmap :as cmap]
             [eliza.memory.schema.smap :as smap]
-            [eliza.memory.schema.srecord :refer :all])
+            [eliza.memory.schema.model :refer :all])
   (:use clojure.pprint)
   (:use clojure.set))
 
@@ -19,8 +19,7 @@
 
 (defn add-concept[word function]
   (if (= false (exist-concept word))
-      (let [word-concept  (->concept_obj word function)
-            ;word-concept {:word word :function function}
+      (let [word-concept  (->crec word function)
             handle (first (graph/hg-add-nodes [word-concept]))]
         (graph/hg-replace-node handle (assoc word-concept :handle handle))
         (cmap/add-concept word handle)
@@ -51,7 +50,7 @@
       false common-coll)))
 
 (defn add-schema[coll value]
-  (let [obj (->schema_obj value)
+  (let [obj (->srec value)
         handle (graph/hg-add-link coll obj)]
     (smap/add-schema handle coll)
     handle))
@@ -62,7 +61,7 @@
 
 (defn change-schema-value [handle value]
   ;(let [coll (smap/get-schema handle)]
-  (let [obj (->schema_obj value)]
+  (let [obj (->srec value)]
     (graph/hg-change-link-value handle value)))
     ;(graph/hg-replace-link handle coll value)))
 

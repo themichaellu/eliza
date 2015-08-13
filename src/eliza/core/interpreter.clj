@@ -1,4 +1,4 @@
-(ns eliza.main.interpreter
+(ns eliza.core.interpreter
   (:gen-class))
 
 

@@ -17,8 +17,8 @@
 
   :plugins [[lein-gorilla "0.3.4"]]
 
-  :aot [eliza.memory.concept.crecord
-        eliza.memory.schema.srecord]
+  :aot [eliza.memory.concept.model
+        eliza.memory.schema.model]
 
   :main ^:skip-aot eliza.core
 

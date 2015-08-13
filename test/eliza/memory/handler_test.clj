@@ -1,6 +1,6 @@
-(ns eliza.memory.mem_manager_test
+(ns eliza.memory.handler_test
   (:require [clojure.test :refer :all]
-            [eliza.memory.mem_manager :refer :all]
+            [eliza.memory.handler :refer :all]
             [eliza.utils.hypergraphdb :as graph])
   (:use clojure.pprint))
 
