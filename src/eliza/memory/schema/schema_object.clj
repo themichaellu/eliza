@@ -1,4 +1,4 @@
-(ns eliza.schema)
+(ns eliza.schema_object)
 
 ;(defprotocol schema-protocol
 ;  (get-concepts-except [this handle]))

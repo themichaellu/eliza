@@ -22,15 +22,3 @@
 
 (defn pprint-smap []
   (pprint schema-map))
-
-
-
-
-
-
-
-
-
-
-
-

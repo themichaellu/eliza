@@ -1,6 +1,6 @@
 (ns eliza.schema_test
   (:require [clojure.test :refer :all]
-            [eliza.schema :refer :all])
+            [eliza.concept_object :refer :all])
   (:use clojure.pprint))
 
 (deftest schema-function-test

@@ -1,6 +1,6 @@
 (ns eliza.concept_test
   (:require [clojure.test :refer :all]
-            [eliza.concept :refer :all])
+            [eliza.concept_object :refer :all])
   (:use clojure.pprint))
 
 (deftest concept-function-test

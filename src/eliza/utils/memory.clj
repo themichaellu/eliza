@@ -1,10 +1,10 @@
 (ns eliza.memory
   (:gen-class)
   (:require [eliza.hypergraphdb :as graph]
-            [eliza.concept :refer :all]
+            [eliza.concept_object :refer :all]
             [eliza.concept_map :as cmap]
             [eliza.schema_map :as smap]
-            [eliza.schema :refer :all])
+            [eliza.concept_object :refer :all])
   (:use clojure.pprint)
   (:use clojure.set))
 
@@ -76,5 +76,3 @@
   (cmap/pprint-cmap)
   (println "Schemata Map:")
   (smap/pprint-smap))
-
-
