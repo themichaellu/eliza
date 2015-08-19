@@ -7,14 +7,6 @@
   (let [arg-vect  (vec (map symbol args))]
     `(fn ~arg-vect ~f)))
 
-(defn gen-cfunction [args f]
-  (let [arg-vect  (vec (map symbol args))]
-    `(fn ~arg-vect ~f)))
-
-(defn gen-sfunction [args f]
-  (let [arg-vect  (vec (map symbol args))]
-    `(fn ~arg-vect ~f)))
-
 ; Input:  HGHandle source vector, HGHandle target vector
 ; Output: Map
 (defn gen-args [source-vec target-vec]

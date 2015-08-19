@@ -20,7 +20,7 @@
   :aot [eliza.memory.concept.model
         eliza.memory.schema.model]
 
-  :main ^:skip-aot eliza.core
+  :main ^:skip-aot eliza.main
 
   :target-path "target/%s"
 

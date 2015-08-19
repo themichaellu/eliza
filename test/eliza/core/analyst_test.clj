@@ -15,5 +15,7 @@
           anon-fn (gen-function ["x"] '(inc x))]
     (is (= 2 ((eval anon-fn) 1))))))
 
-
-
+(deftest genc-test
+  (testing "gen-function test"
+    (let [anon-fn (gen-function (vector "source" "target") '(pprint source))]
+      ((eval anon-fn) [1] [2]))))
