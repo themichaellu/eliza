@@ -5,4 +5,5 @@
 
 (deftest hello-concept-test
   (testing "hello-concept test"
-    (is (= 3 ((:function hello-concept) 1 2)))))
+
+    (is (= 3 ()))))
