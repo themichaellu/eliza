@@ -6,30 +6,27 @@
 
 (def self-concept (atom nil))
 (def name-concept (atom nil))
-(def eliza-concept (atom nil))
 (def entity-concept (atom nil))
-(def acknowledgment-concept (atom nil))
-;(def recognition-concept (atom nil))
-;(def greeting-concept (atom nil))
-(def response-concept (atom nil))
+(def aware-concept (atom nil))
+(def greeting-concept (atom nil))
 (def hello-concept (atom nil))
 (def period-concept (atom nil))
 
-(defrecord self-concept [])
-(defrecord name-concept [])
-(defrecord eliza-concept [])
-(defrecord entity-concept [])
-(defrecord acknowledgment-concept [])
-(defrecord response-concept [])
-(defrecord hello-concept [])
-(defrecord period-concept [])
 
-(defn f-self []
-  (println "hello!"))
+(defrecord self-rec [])
+(defrecord name-rec [])
+(defrecord entity-rec [])
+(defrecord aware-rec [])
+(defrecord greeting-rec [])
+(defrecord hello-rec [])
+(defrecord period-rec [])
+
+(defn self-concept-f [input]
+  (println input))
 
 ;Finish self-concept
-(defn inst-self []
-  (let [c   (->self-concept)
-        rec {:name      "self"
-             :function  f-self}]
-    (swap! c merge rec)))
+(defn inst-self-concept []
+  (let [rec {:identifier  "self"
+             :function    self-concept-f}]
+    (reset! self-concept (->self-rec))
+    (swap! self-concept merge rec)))

@@ -18,6 +18,7 @@
   :plugins [[lein-gorilla "0.3.4"]]
 
   :aot [eliza.memory.concept.model
+        eliza.memory.concept.base.concepts
         eliza.memory.schema.model]
 
   :main ^:skip-aot eliza.main
