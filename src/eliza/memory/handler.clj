@@ -49,6 +49,7 @@
     (if (empty? common-coll)
       false common-coll)))
 
+; Input: Collection of atoms for target set, Clojure record as value
 (defn add-schema[coll value]
   (let [obj (->srec value)
         handle (graph/hg-add-link coll obj)]

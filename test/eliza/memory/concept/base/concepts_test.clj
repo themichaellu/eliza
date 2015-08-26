@@ -16,14 +16,19 @@
 
 (defn test-fixture [f]
   (initialize)
-  (inst-self-schema)
+  ;(inst-self-schema)
   (f)
   (graph/hg-close))
 
 (use-fixtures :each test-fixture)
 
-(deftest hello-concept-test
-  (testing "hello-concept test")
+(deftest entity-concept-test
+  (testing "entity-concept test")
+  (inst-entity-concept)
+  (println ((:function @entity-concept) nil))
+  (is (= 3 3)))
+
+(deftest self-concept-test
+  (testing "self-concept test")
   (inst-self-concept)
-  ((:function @self-concept)  @s-self-handle)
   (is (= 3 3)))
