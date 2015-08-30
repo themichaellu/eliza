@@ -25,10 +25,32 @@
 (deftest entity-concept-test
   (testing "entity-concept test")
   (inst-entity-concept)
-  (println ((:function @entity-concept) nil))
+  ;(println ((:function @entity-concept) nil))
   (is (= 3 3)))
 
-(deftest self-concept-test
+; Initializing eliza's mind
+(def eliza-entity (atom nil))
+(def michael-entity (atom nil))
+
+(defn initialize-mind []
+  (inst-entity-concept)
+  (inst-myself-concept)
+  (reset! eliza-entity   ((:function (graph/hg-get-node @entity-concept)) nil))
+  (reset! michael-entity ((:function (graph/hg-get-node @entity-concept)) nil))
+  ;(pprint (graph/hg-get-link-value @michael-entity))
+  ; Added michael-entity into eliza
+  (change-schema-targets @eliza-entity [@michael-entity])
+  ; Added eliza-entity into michael-entity
+  (change-schema-targets @michael-entity [@eliza-entity])
+  (let [value (graph/hg-get-link-value @michael-entity)]
+    (change-schema-value @michael-entity
+                         (assoc value :k-base {"eliza" @eliza-entity})))
+  ;(pprint (graph/hg-get-link-value @michael-entity))
+  (pprint ((:function @myself-concept) @eliza-entity [@michael-entity]))
+  )
+
+(deftest hello-eliza-test
   (testing "self-concept test")
-  (inst-self-concept)
-  (is (= 3 3)))
+  (initialize-mind)
+    ;(println ((:function @myself-concept) @eliza-entity))
+)
