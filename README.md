@@ -1,3 +1,3 @@
 # eliza
 
-An personal, intelligent agent.
+A personal, intelligent agent.
